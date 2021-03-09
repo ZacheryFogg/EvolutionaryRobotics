@@ -11,4 +11,4 @@ class SENSOR:
         self.values[timeStep] = pyrosim.Get_Touch_Sensor_Value_For_Link(
             self.linkName)
         if timeStep == 999:
-            print(self.values)
+            pass
