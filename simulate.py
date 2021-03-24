@@ -1,3 +1,4 @@
+import sys
 from simulation import SIMULATION
 # import pybullet as p
 # import time
@@ -43,5 +44,10 @@ from simulation import SIMULATION
 # with open('./data/frontLegSensorValues.npy', 'wb') as f:
 #     numpy.save(f, frontLegSensorValues)
 # p.disconnect()
-simulation = SIMULATION()
+directOrGUI = 'GUI'
+if len(sys.argv) > 1:
+    directOrGUI = sys.argv[1]
+simulation = SIMULATION(directOrGUI)
 simulation.run()
+
+simulation.Get_Fitness()
