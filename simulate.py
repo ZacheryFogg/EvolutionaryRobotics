@@ -47,7 +47,9 @@ from simulation import SIMULATION
 directOrGUI = 'GUI'
 if len(sys.argv) > 1:
     directOrGUI = sys.argv[1]
-simulation = SIMULATION(directOrGUI)
+if len(sys.argv) > 2:
+    solutionID = sys.argv[2]
+simulation = SIMULATION(directOrGUI, solutionID)
 simulation.run()
 
 simulation.Get_Fitness()

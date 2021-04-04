@@ -2,23 +2,48 @@ import numpy as np
 import pyrosim.pyrosim as pyrosim
 import random
 import os
+import time
 
 
 class SOLUTION:
-    def __init__(self):
+    def __init__(self, id):
+        self.myID = id
         self.weights = np.random.rand(3, 2)
-        self.weights = (self.weights*2)-1
+        self.weights = (self.weights * 2) - 1
 
     def Evaluate(self, disp):
+        # self.Create_Body()
+        # self.Create_Brain()
+        # self.Create_World()
+        # # os.system("python simulate.py {}".format(disp))
+        # os.system("start /B python simulate.py {} {}".format(disp, self.myID))
+        # self.Start_Simulation(disp)
+        # self.Wait_For_Simulation_To_End()
+        pass
+
+    def Start_Simulation(self, disp):
         self.Create_Body()
         self.Create_Brain()
         self.Create_World()
-        os.system("python simulate.py {}".format(disp))
-        f = open('fitness.txt', 'r')
+        # os.system("python simulate.py {}".format(disp))
+        os.system("start /B python simulate.py {} {}".format(disp, self.myID))
+
+    def Wait_For_Simulation_To_End(self):
+        fitnessFileName = 'fitness{}.txt'.format(self.myID)
+        while not os.path.exists(fitnessFileName):
+            time.sleep(0.01)
+        f = open(fitnessFileName, 'r')
         self.fitness = float(f.read())
+        f.close()
+        print("\nFITNESS {} : {}\n".format(self.myID, self.fitness))
+        cmd = 'rm {}'.format(fitnessFileName)
+        os.system(cmd)
 
     def Create_Robot(self):
         pass
+
+    def Set_ID(self, id):
+        self.myID = id
 
     def Create_Body(self):
         width = 1
@@ -43,7 +68,7 @@ class SOLUTION:
 
     def Create_Brain(self):
 
-        pyrosim.Start_NeuralNetwork("brain.nndf")
+        pyrosim.Start_NeuralNetwork("brain{}.nndf".format(self.myID))
         pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
         pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
         pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")

@@ -12,7 +12,7 @@ import constants as c
 
 
 class SIMULATION:
-    def __init__(self, directOrGUI):
+    def __init__(self, directOrGUI, solutionID):
 
         if directOrGUI == 'DIRECT':
             self.physicsClient = p.connect(p.DIRECT)
@@ -21,9 +21,9 @@ class SIMULATION:
 
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, -9.8)
-
+        self.directOrGUI = directOrGUI
         self.world = WORLD()
-        self.robot = ROBOT()
+        self.robot = ROBOT(solutionID)
 
     def __del__(self):
         p.disconnect()
@@ -35,7 +35,9 @@ class SIMULATION:
             self.robot.Sense(i)
             self.robot.Think()
             self.robot.Act(i)
-            time.sleep(1 / 360)
+
+            if self.directOrGUI == 'GUI':
+                time.sleep(1 / 360)
 
     def Get_Fitness(self):
         self.robot.Get_Fitness()

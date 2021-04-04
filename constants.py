@@ -1,9 +1,10 @@
 import numpy
 
-numberOfGenerations = 10
+populationSize = 2
+numberOfGenerations = 2
 maxForce = 25
 x = numpy.linspace(-numpy.pi, numpy.pi, 1000)
-simulationSteps = 300
+simulationSteps = 1000
 # Variables controling Front leg
 amplitudeFrontLeg = numpy.pi/4
 frequencyFrontLeg = 10
