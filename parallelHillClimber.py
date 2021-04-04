@@ -27,13 +27,13 @@ class PARALLEL_HILL_CLIMBER:
 
         #     parent = self.parents[key]
         #     parent.Wait_For_Simulation_To_End()
-        self.Evaluate(self.parents, 'GUI')
+        self.Evaluate(self.parents)
 
         for currGeneration in range(numberOfGenerations):
             # print(currGeneration)
             self.Evolve_For_One_Generation()
 
-        # self.Show_Best()
+        self.Show_Best()
 
     def Evaluate(self, solutions, disp='DIRECT'):
         for key in solutions:
@@ -50,10 +50,10 @@ class PARALLEL_HILL_CLIMBER:
     def Evolve_For_One_Generation(self):
         self.Spawn()
         self.Mutate()
-        self.Evaluate(self.children, 'GUI')
-        exit()
+        self.Evaluate(self.children)
+
         self.Print()
-        # self.Select()
+        self.Select()
         pass
 
     def Spawn(self):
@@ -74,12 +74,25 @@ class PARALLEL_HILL_CLIMBER:
         # print(self.parent.weights)
 
     def Select(self):
-        if self.parent.fitness > self.child.fitness:
-            self.parent = self.child
+        for key in self.parents:
+            if self.parents[key].fitness > self.children[key].fitness:
+
+                self.parents[key] = self.children[key]
+        # if self.parent.fitness > self.child.fitness:
+        #     self.parent = self.child
 
     def Print(self):
-        print("\nParent Fitness : ", self.parent.fitness,
-              " Child Fitness: ", self.child.fitness)
+        print('\n\n')
+        for key in self.parents:
+            print('\n Parent Fitness: {} Child Fitness: {}\n'.format(
+                self.parents[key].fitness, self.children[key].fitness))
+        print('\n\n')
 
     def Show_Best(self):
-        self.parent.Evaluate('GUI')
+        bestFittness = 10000
+        for key in self.parents:
+            if self.parents[key].fitness < bestFittness:
+                bestKey = key
+                bestFittness = self.parents[key].fitness
+        print('Lowest Fitness: {}'.format(bestFittness))
+        self.parents[bestKey].Start_Simulation('GUI')

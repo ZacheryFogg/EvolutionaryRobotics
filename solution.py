@@ -35,7 +35,7 @@ class SOLUTION:
         f = open(fitnessFileName, 'r')
         self.fitness = float(f.read())
         f.close()
-        print("\nFITNESS {} : {}\n".format(self.myID, self.fitness))
+        # print("\nFITNESS {} : {}\n".format(self.myID, self.fitness))
         cmd = 'rm {}'.format(fitnessFileName)
         os.system(cmd)
 

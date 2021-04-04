@@ -1,7 +1,7 @@
 import numpy
 
-populationSize = 2
-numberOfGenerations = 2
+populationSize = 10
+numberOfGenerations = 10
 maxForce = 25
 x = numpy.linspace(-numpy.pi, numpy.pi, 1000)
 simulationSteps = 1000
