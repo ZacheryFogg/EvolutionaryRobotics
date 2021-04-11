@@ -1,12 +1,15 @@
 import numpy
 
-populationSize = 10
-numberOfGenerations = 10
+motorJointRange = .5
+numMotorNeurons = 8
+numSensorNeurons = 9
+populationSize = 1
+numberOfGenerations = 100
 maxForce = 25
 x = numpy.linspace(-numpy.pi, numpy.pi, 1000)
 simulationSteps = 1000
 # Variables controling Front leg
-amplitudeFrontLeg = numpy.pi/4
+amplitudeFrontLeg = numpy.pi / 4
 frequencyFrontLeg = 10
 phaseOffsetFrontLeg = 0
 targetAnglesFrontLeg = numpy.empty(1000)
@@ -15,7 +18,7 @@ for i in range(1000):
         numpy.sin(frequencyFrontLeg * x[i] + phaseOffsetFrontLeg)
 
 # Variable Controling Back Leg
-amplitudeBackLeg = numpy.pi/4
+amplitudeBackLeg = numpy.pi / 4
 frequencyBackLeg = 10
 phaseOffsetBackLeg = 0
 targetAnglesBackLeg = numpy.empty(1000)
