@@ -2,7 +2,7 @@ import numpy
 
 motorJointRange = .5
 numMotorNeurons = 8
-numSensorNeurons = 9
+numSensorNeurons = 4
 populationSize = 1
 numberOfGenerations = 100
 maxForce = 25
