@@ -1,4 +1,6 @@
 import pybullet as p
+import os
+import time
 
 from pyrosim.nndf import NNDF
 
@@ -237,7 +239,9 @@ def Start_URDF(filename):
     filetype = URDF_FILETYPE
 
     global f
-
+    # I added this in experimental
+    while not os.path.exists(filename):
+        time.sleep(0.01)
     f = open(filename, "w")
 
     global urdf
