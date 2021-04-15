@@ -158,7 +158,8 @@ class SOLUTION:
                 val = random.uniform(-1, 1)
 
                 pyrosim.Send_Synapse(sourceNeuronName=currCol,
-                                     targetNeuronName=currRow,
+                                     targetNeuronName=currRow +
+                                     c.numSensorNeurons,
                                      weight=self.weights[currCol][currRow])
 
         # pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=3, weight=-.5)

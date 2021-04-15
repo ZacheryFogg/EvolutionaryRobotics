@@ -1,9 +1,9 @@
 import numpy
 
-motorJointRange = .3
+motorJointRange = .5
 numMotorNeurons = 8
 numSensorNeurons = 9
-populationSize = 10
+populationSize = 1
 numberOfGenerations = 10
 maxForce = 25
 x = numpy.linspace(-numpy.pi, numpy.pi, 1000)
