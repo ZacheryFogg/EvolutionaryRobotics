@@ -54,6 +54,7 @@ class ROBOT:
         basePosition = basePositionAndOrientation[0]
         # xCoordinateOfLinkZero = positionOfLinkZero[0]
         xPosition = basePosition[0]
+        zPosition = basePosition[2]
 
         f = open("tmp{}.txt".format(self.solutionID), 'w')
         # f.write(str(xCoordinateOfLinkZero))
