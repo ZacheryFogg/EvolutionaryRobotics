@@ -1,11 +1,11 @@
 import numpy
 
-numSensorNeurons = 3
-numMotorNeurons = 2
+numSensorNeurons = 4
+numMotorNeurons = 8
 populationSize = 10
-numberOfGenerations = 10
-
-maxForce = 25
+numberOfGenerations = 50
+motorJointRange = .84
+maxForce = 50
 x = numpy.linspace(-numpy.pi, numpy.pi, 1000)
 simulationSteps = 1000
 # Variables controling Front leg
