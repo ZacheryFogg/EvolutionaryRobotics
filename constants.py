@@ -4,10 +4,10 @@ numSensorNeurons = 4
 numMotorNeurons = 8
 populationSize = 10
 numberOfGenerations = 50
-motorJointRange = .84
-maxForce = 50
+motorJointRange = .8
+maxForce = 100
 x = numpy.linspace(-numpy.pi, numpy.pi, 1000)
-simulationSteps = 1000
+simulationSteps = 500
 # Variables controling Front leg
 amplitudeFrontLeg = numpy.pi / 4
 frequencyFrontLeg = 10

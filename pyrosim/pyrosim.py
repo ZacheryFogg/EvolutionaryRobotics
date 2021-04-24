@@ -247,7 +247,7 @@ def Start_URDF(filename):
             f = open(filename, "w")
             break
         except:
-            print('\n\nECXCEPTED\n\n')
+            print('\n\nException in Start_URDF\n\n')
 
     global urdf
 

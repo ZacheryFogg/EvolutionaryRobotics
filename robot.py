@@ -58,7 +58,8 @@ class ROBOT:
 
         f = open("tmp{}.txt".format(self.solutionID), 'w')
         # f.write(str(xCoordinateOfLinkZero))
-        f.write(str(xPosition))
+        # f.write(str(xPosition))
+        f.write(str(zPosition))
         f.close()
 
         # cmd = 'rename tmp{}.txt fitness{}.txt'.format(
