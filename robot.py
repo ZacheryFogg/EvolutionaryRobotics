@@ -50,6 +50,8 @@ class ROBOT:
         # stateOfLinkZero = p.getLinkState(self.robot, 0)
         basePositionAndOrientation = p.getBasePositionAndOrientation(
             self.robot)
+        # print("\n\nTYPE:", type(self.robot))
+        # print("Value", self.robot)
         # positionOfLinkZero = stateOfLinkZero[0]
         basePosition = basePositionAndOrientation[0]
         # xCoordinateOfLinkZero = positionOfLinkZero[0]

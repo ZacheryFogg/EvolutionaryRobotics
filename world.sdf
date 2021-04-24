@@ -1,9 +1,9 @@
 <sdf>
-    <model name="Box">
-        <pose>-3 3 0.5 0 0 0 </pose>
-        <link name="Box">
+    <model name="Wall1">
+        <pose>0.5 3.5 1 0 0 0 </pose>
+        <link name="Wall1">
             <inertial>
-                <mass>1.0</mass>
+                <mass>1000.0</mass>
                 <inertia>
                     <ixx>0.083</ixx>
                     <ixy>0.0</ixy>
@@ -16,14 +16,104 @@
             <collision>
                 <geometry>
                    <box>
-                      <size>1 1 1</size>
+                      <size>7 2 2</size>
                    </box>
                 </geometry>
             </collision>
             <visual>
                 <geometry>
                    <box>
-                      <size>1 1 1</size>
+                      <size>7 2 2</size>
+                   </box>
+                </geometry>
+            </visual>
+        </link>
+    </model>
+    <model name="Wall2">
+        <pose>3 -4 1 0 0 0 </pose>
+        <link name="Wall2">
+            <inertial>
+                <mass>1000.0</mass>
+                <inertia>
+                    <ixx>0.083</ixx>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyy>0.083</iyy>
+                    <iyz>0.0</iyz>
+                    <izz>0.083</izz>
+                </inertia>
+            </inertial>
+            <collision>
+                <geometry>
+                   <box>
+                      <size>2 12 2</size>
+                   </box>
+                </geometry>
+            </collision>
+            <visual>
+                <geometry>
+                   <box>
+                      <size>2 12 2</size>
+                   </box>
+                </geometry>
+            </visual>
+        </link>
+    </model>
+    <model name="Wall3">
+        <pose>-3 -0.5 1 0 0 0 </pose>
+        <link name="Wall3">
+            <inertial>
+                <mass>1000.0</mass>
+                <inertia>
+                    <ixx>0.083</ixx>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyy>0.083</iyy>
+                    <iyz>0.0</iyz>
+                    <izz>0.083</izz>
+                </inertia>
+            </inertial>
+            <collision>
+                <geometry>
+                   <box>
+                      <size>2 3 2</size>
+                   </box>
+                </geometry>
+            </collision>
+            <visual>
+                <geometry>
+                   <box>
+                      <size>2 3 2</size>
+                   </box>
+                </geometry>
+            </visual>
+        </link>
+    </model>
+    <model name="Wall4">
+        <pose>-6 -8.5 1 0 0 0 </pose>
+        <link name="Wall4">
+            <inertial>
+                <mass>1000.0</mass>
+                <inertia>
+                    <ixx>0.083</ixx>
+                    <ixy>0.0</ixy>
+                    <ixz>0.0</ixz>
+                    <iyy>0.083</iyy>
+                    <iyz>0.0</iyz>
+                    <izz>0.083</izz>
+                </inertia>
+            </inertial>
+            <collision>
+                <geometry>
+                   <box>
+                      <size>14 2 2</size>
+                   </box>
+                </geometry>
+            </collision>
+            <visual>
+                <geometry>
+                   <box>
+                      <size>14 2 2</size>
                    </box>
                 </geometry>
             </visual>

@@ -10,6 +10,7 @@ class PARALLEL_HILL_CLIMBER:
         os.system('rm brain*.nndf')
         os.system('rm fitness*.txt')
         self.parents = {}
+        self.timestep = 0
         self.nextAvailableID = 0
         for i in range(populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
@@ -74,6 +75,8 @@ class PARALLEL_HILL_CLIMBER:
         # print(self.parent.weights)
 
     def Select(self):
+        print('Step: ', self.timestep)
+        self.timestep += 1
         for key in self.parents:
             if self.parents[key].fitness > self.children[key].fitness:
 

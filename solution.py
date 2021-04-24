@@ -58,6 +58,7 @@ class SOLUTION:
         x = 0
         y = 0
         z = 1
+
         while not os.path.exists("body.urdf"):
             time.sleep(0.01)
         pyrosim.Start_URDF("body.urdf")
@@ -176,23 +177,23 @@ class SOLUTION:
     def Create_Brain(self):
 
         pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
-        # pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
-        # pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
-        # pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
-        # pyrosim.Send_Sensor_Neuron(name=3, linkName='LeftLeg')
-        # pyrosim.Send_Sensor_Neuron(name=4, linkName='RightLeg')
-        pyrosim.Send_Sensor_Neuron(name=0, linkName='FrontLowerLeg')
-        pyrosim.Send_Sensor_Neuron(name=1, linkName='BackLowerLeg')
-        pyrosim.Send_Sensor_Neuron(name=2, linkName='RightLowerLeg')
-        pyrosim.Send_Sensor_Neuron(name=3, linkName='LeftLowerLeg')
-        pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_BackLeg")
-        pyrosim.Send_Motor_Neuron(name=5, jointName="Torso_FrontLeg")
-        pyrosim.Send_Motor_Neuron(name=6, jointName='Torso_LeftLeg')
-        pyrosim.Send_Motor_Neuron(name=7, jointName='Torso_RightLeg')
-        pyrosim.Send_Motor_Neuron(name=8, jointName='FrontLeg_FrontLowerLeg')
-        pyrosim.Send_Motor_Neuron(name=9, jointName='BackLeg_BackLowerLeg')
-        pyrosim.Send_Motor_Neuron(name=10, jointName='RightLeg_RightLowerLeg')
-        pyrosim.Send_Motor_Neuron(name=11, jointName='LeftLeg_LeftLowerLeg')
+        pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
+        pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
+        pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+        pyrosim.Send_Sensor_Neuron(name=3, linkName='LeftLeg')
+        pyrosim.Send_Sensor_Neuron(name=4, linkName='RightLeg')
+        pyrosim.Send_Sensor_Neuron(name=5, linkName='FrontLowerLeg')
+        pyrosim.Send_Sensor_Neuron(name=6, linkName='BackLowerLeg')
+        pyrosim.Send_Sensor_Neuron(name=7, linkName='RightLowerLeg')
+        pyrosim.Send_Sensor_Neuron(name=8, linkName='LeftLowerLeg')
+        pyrosim.Send_Motor_Neuron(name=9, jointName="Torso_BackLeg")
+        pyrosim.Send_Motor_Neuron(name=10, jointName="Torso_FrontLeg")
+        pyrosim.Send_Motor_Neuron(name=11, jointName='Torso_LeftLeg')
+        pyrosim.Send_Motor_Neuron(name=12, jointName='Torso_RightLeg')
+        pyrosim.Send_Motor_Neuron(name=13, jointName='FrontLeg_FrontLowerLeg')
+        pyrosim.Send_Motor_Neuron(name=14, jointName='BackLeg_BackLowerLeg')
+        pyrosim.Send_Motor_Neuron(name=15, jointName='RightLeg_RightLowerLeg')
+        pyrosim.Send_Motor_Neuron(name=16, jointName='LeftLeg_LeftLowerLeg')
 
         for currCol in range(c.numSensorNeurons):
             for currRow in range(c.numMotorNeurons):
@@ -204,6 +205,29 @@ class SOLUTION:
                                      weight=self.weights[currCol][currRow])
         pyrosim.End()
 
+    def Create_Maze(self):
+
+        # Send rectangles that represent walls
+        # pyrosim.Send_Cube(name="Wall1", pos=[-2, -3, 1], size=[10, 2, 2])
+
+        # pyrosim.Send_Cube(name="Wall4", pos=[-8, .25, 1], size=[2, 8.5, 2])
+        # pyrosim.Send_Cube(name="Wall5", pos=[-1, 6.25, 1], size=[2, 7.5, 2])
+        # pyrosim.Send_Cube(name="Wall6", pos=[-8, 11, 1], size=[16, 2, 2])
+        pyrosim.Send_Cube(name="Wall1", pos=[.5, 3.5, 1], size=[7, 2, 2])
+        pyrosim.Send_Cube(name="Wall2", pos=[3, -4, 1], size=[2, 12, 2])
+        pyrosim.Send_Cube(name="Wall3", pos=[-3, -.5, 1], size=[2, 3, 2])
+        pyrosim.Send_Cube(name="Wall4", pos=[-6, -8.5, 1], size=[14, 2, 2])
+
+    def Create_Block_Field(self):
+
+        for x in range(-10, 5, 2):
+            for y in range(-5, 10, 2):
+                if not (x == 0 and y == 0):
+
+                    pyrosim.Send_Cube(name="Box{}_{}".format(x, y),
+                                      pos=[x, y, 1],
+                                      size=[1.4, 1.4, 2])
+
     def Create_World(self):
         pyrosim.Start_SDF("world.sdf")
 
@@ -213,9 +237,10 @@ class SOLUTION:
         x = -3
         y = 3
         z = .5
-        pyrosim.Send_Cube(name="Box",
-                          pos=[x, y, z],
-                          size=[length, width, height])
+
+        # self.Create_Block_Field()
+        self.Create_Maze()
+
         pyrosim.End()
 
     def Mutate(self):
