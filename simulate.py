@@ -1,5 +1,6 @@
 import sys
 from simulation import SIMULATION
+import os
 # import pybullet as p
 # import time
 # import pybullet_data
@@ -52,4 +53,15 @@ if len(sys.argv) > 2:
 simulation = SIMULATION(directOrGUI, solutionID)
 simulation.run()
 
-simulation.Get_Fitness()
+# Check if z if less than 3, then rewrite fitness to 100
+z = simulation.Get_Z_Coord()
+# print('\n\n Z Coord: ', z)
+if (z <= 2.4):
+
+    f = open("tmp{}.txt".format(simulation.Get_ID()), 'w')
+    f.write('100')
+    f.close()
+    os.rename("tmp" + str(simulation.Get_ID()) + ".txt",
+              "fitness" + str(simulation.Get_ID()) + ".txt")
+else:
+    simulation.Get_Fitness()

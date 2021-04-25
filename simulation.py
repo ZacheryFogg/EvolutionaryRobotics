@@ -41,3 +41,9 @@ class SIMULATION:
 
     def Get_Fitness(self):
         self.robot.Get_Fitness()
+
+    def Get_Z_Coord(self):
+        return self.robot.Get_Z_Coord()
+
+    def Get_ID(self):
+        return self.robot.Get_ID()

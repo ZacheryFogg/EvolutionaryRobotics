@@ -70,3 +70,13 @@ class ROBOT:
                   "fitness" + str(self.solutionID) + ".txt")
         # cmd = 'rm tmp{}.txt'.format(self.solutionID)
         # os.system(cmd)
+
+    def Get_Z_Coord(self):
+        basePositionAndOrientation = p.getBasePositionAndOrientation(
+            self.robot)
+        basePosition = basePositionAndOrientation[0]
+        zPosition = basePosition[2]
+        return zPosition
+
+    def Get_ID(self):
+        return self.solutionID
