@@ -3,6 +3,7 @@ from constants import numberOfGenerations
 from constants import populationSize
 import copy
 import os
+import numpy
 
 
 class PARALLEL_HILL_CLIMBER:
@@ -15,7 +16,11 @@ class PARALLEL_HILL_CLIMBER:
         for i in range(populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID += 1
-        print(self.parents)
+        # print(self.parents)
+        self.agent_fitnesses = numpy.zeros(
+            (numberOfGenerations, populationSize))
+        print(self.agent_fitnesses.shape)
+        # print(self.agent_fitnesses)
 
     def Evolve(self):
         # for key in self.parents:
@@ -31,9 +36,23 @@ class PARALLEL_HILL_CLIMBER:
         self.Evaluate(self.parents)
 
         for currGeneration in range(numberOfGenerations):
-            # print(currGeneration)
-            self.Evolve_For_One_Generation()
 
+            self.Evolve_For_One_Generation()
+            # print('\n\nCURRENT GENERATION: {}\n\n'.format(currGeneration))
+            # Record fitness values. We don't care about the first generation as they did not mutate
+            for key in self.parents:
+                # if key == populationSize:
+                #     print("LENGTH OF PARENTS: {}".format(len(self.parents)))
+                #     key -= 1
+                if self.parents[key].fitness == 100:
+                    self.parents[key].fitness = 0
+                # print('FITNESS {} KEY {}'.format(self.parents[key].fitness,
+                #                                  key))
+                self.agent_fitnesses[currGeneration,
+                                     key] = self.parents[key].fitness
+            # print('Increment gen')
+        print(self.agent_fitnesses)
+        numpy.save('MutateAllNeuron', self.agent_fitnesses)
         self.Show_Best()
 
     def Evaluate(self, solutions, disp='DIRECT'):
@@ -78,14 +97,16 @@ class PARALLEL_HILL_CLIMBER:
         print('Step: ', self.timestep)
         self.timestep += 1
         for key in self.parents:
+            # write out fitness valuess
             if self.parents[key].fitness > self.children[key].fitness:
-
                 self.parents[key] = self.children[key]
+
         # if self.parent.fitness > self.child.fitness:
         #     self.parent = self.child
 
     def Print(self):
         print('\n\n')
+        # print('write fitness at gen {}'.format(self.curr_gen))
         for key in self.parents:
             print('\n Parent Fitness: {} Child Fitness: {}\n'.format(
                 self.parents[key].fitness, self.children[key].fitness))

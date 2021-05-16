@@ -222,6 +222,24 @@ class SOLUTION:
         pyrosim.End()
 
     def Mutate(self):
-        col = random.randint(0, c.numSensorNeurons - 1)
-        row = random.randint(0, c.numMotorNeurons - 1)
-        self.weights[col, row] = random.random() * 2 - 1
+        # col = random.randint(0, c.numSensorNeurons - 1)
+        # row = random.randint(0, c.numMotorNeurons - 1)
+        # self.weights[col, row] = random.random() * 2 - 1
+        # col = random.randint(0, c.numSensorNeurons - 1)
+        # row = random.randint(0, c.numMotorNeurons - 1)
+        # self.weights[col, row] = random.random() * 2 - 1
+        # col = random.randint(0, c.numSensorNeurons - 1)
+        # row = random.randint(0, c.numMotorNeurons - 1)
+        # self.weights[col, row] = random.random() * 2 - 1
+        # col = random.randint(0, c.numSensorNeurons - 1)
+        # row = random.randint(0, c.numMotorNeurons - 1)
+        # self.weights[col, row] = random.random() * 2 - 1
+        # col = random.randint(0, c.numSensorNeurons - 1)
+        # row = random.randint(0, c.numMotorNeurons - 1)
+        # self.weights[col, row] = random.random() * 2 - 1
+        # col = random.randint(0, c.numSensorNeurons - 1)
+        # row = random.randint(0, c.numMotorNeurons - 1)
+        # self.weights[col, row] = random.random() * 2 - 1
+        for col in range(c.numSensorNeurons):
+            for row in range(c.numMotorNeurons):
+                self.weights[col, row] = random.random() * 2 - 1
